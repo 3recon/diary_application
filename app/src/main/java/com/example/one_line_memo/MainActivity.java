@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btnMenu, imgbtnclose;
     EditText edtMemo;
     Button btnSaveMemo;
+    FrameLayout loadingLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         imgbtnclose=findViewById(R.id.imgbtnclose);
         btnSaveMemo=findViewById(R.id.btnSaveMemo);
         edtMemo=findViewById(R.id.edtMemo);
+        loadingLayout = findViewById(R.id.loadingLayout);
 
         btnMenu.setOnClickListener(v -> {
             drawerLayout.openDrawer(GravityCompat.END);
@@ -51,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 //Todo: 로딩화면으로 이동(돌아가는 C)
+                loadingLayout.setVisibility(View.VISIBLE);
+
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                    Intent intent = new Intent(MainActivity.this, DiaryList.class);
+                    startActivity(intent);
+                    finish();
+                },1500);
             }
         });
     }

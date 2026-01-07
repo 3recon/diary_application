@@ -12,9 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.One_Line_Memo"
         tools:targetApi="31">
+        <activity android:name=".DiaryList" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
