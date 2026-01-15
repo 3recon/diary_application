@@ -1,5 +1,7 @@
 package com.example.one_line_memo;
 
+import java.util.Random;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edtMemo;
     Button btnSaveMemo;
     FrameLayout loadingLayout;
+    TextView tvwise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         btnSaveMemo=findViewById(R.id.btnSaveMemo);
         edtMemo=findViewById(R.id.edtMemo);
         loadingLayout = findViewById(R.id.loadingLayout);
+        tvwise=(TextView)findViewById(R.id.tvwise);
 
         btnMenu.setOnClickListener(v -> {
             drawerLayout.openDrawer(GravityCompat.END);
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         imgbtnclose.setOnClickListener(view -> {
             drawerLayout.closeDrawer(GravityCompat.END);
         });
+
 
         btnSaveMemo.setOnClickListener(v->{
             int memoLength=edtMemo.getText().toString().length();
@@ -56,16 +61,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"일기를 작성해주세요",Toast.LENGTH_SHORT).show();
             }
             else {
-                //Todo: 로딩화면으로 이동(돌아가는 C)
-//                loadingLayout.setVisibility(View.VISIBLE);
                 edtMemo.setText("");
-
                 Intent intent = new Intent(MainActivity.this, DiaryList.class);
                 startActivity(intent);
 //                finish();
-
-
             }
         });
+    }
+
+    @Override
+    //메인화면이 출력될 때 마다 명언 랜덤 새로고침
+    protected void onResume() {
+        super.onResume();
+        //랜덤 적용 부분
+        String[] wiseArray = getResources().getStringArray(R.array.wise_array);
+        Random random = new Random();
+        int index = random.nextInt(wiseArray.length);
+        tvwise.setText(wiseArray[index]);
     }
 }
