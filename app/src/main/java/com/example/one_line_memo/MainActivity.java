@@ -57,13 +57,14 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 //Todo: 로딩화면으로 이동(돌아가는 C)
-                loadingLayout.setVisibility(View.VISIBLE);
+//                loadingLayout.setVisibility(View.VISIBLE);
+                edtMemo.setText("");
 
-                new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    Intent intent = new Intent(MainActivity.this, DiaryList.class);
-                    startActivity(intent);
-                    finish();
-                },1500);
+                Intent intent = new Intent(MainActivity.this, DiaryList.class);
+                startActivity(intent);
+//                finish();
+
+
             }
         });
     }
