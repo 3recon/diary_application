@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     Button btnSaveMemo;
     FrameLayout loadingLayout;
     TextView tvwise;
+    //사이드바 부분
+    TextView tvSetting;
+    TextView tvDiaryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (memoLength>40) {
                 Toast.makeText(MainActivity.this,"40자 미만으로 작성해주세요",Toast.LENGTH_SHORT).show();
+                return;
             }
             if (memoLength==0) {
                 Toast.makeText(MainActivity.this,"일기를 작성해주세요",Toast.LENGTH_SHORT).show();
+                return;
             }
             else {
                 edtMemo.setText("");
@@ -67,7 +72,21 @@ public class MainActivity extends AppCompatActivity {
 //                finish();
             }
         });
+
+        //사이드바 부분
+        tvSetting=(TextView)findViewById(R.id.tvSetting);
+        tvDiaryList=(TextView)findViewById(R.id.tvDiaryList);
+
+        tvDiaryList.setOnClickListener(v -> {
+            drawerLayout.closeDrawer(GravityCompat.END);
+            startActivity(new Intent(MainActivity.this, DiaryList.class));
+        });
+
+
     }
+    //Todo
+    //1.사이드바 메뉴 누르면 해당 화면으로 이동
+    //2.일기 로컬에 저장 회원가입 없이
 
     @Override
     //메인화면이 출력될 때 마다 명언 랜덤 새로고침
