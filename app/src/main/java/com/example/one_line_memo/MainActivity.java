@@ -26,10 +26,8 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btnMenu, imgbtnclose;
     EditText edtMemo;
     Button btnSaveMemo;
-    FrameLayout loadingLayout;
     TextView tvwise;
     //사이드바 부분
-    TextView tvSetting;
     TextView tvDiaryList;
 
     @Override
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         imgbtnclose=findViewById(R.id.imgbtnclose);
         btnSaveMemo=findViewById(R.id.btnSaveMemo);
         edtMemo=findViewById(R.id.edtMemo);
-        loadingLayout = findViewById(R.id.loadingLayout);
         tvwise=(TextView)findViewById(R.id.tvwise);
 
         btnMenu.setOnClickListener(v -> {
@@ -74,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //사이드바 부분
-        tvSetting=(TextView)findViewById(R.id.tvSetting);
         tvDiaryList=(TextView)findViewById(R.id.tvDiaryList);
 
         tvDiaryList.setOnClickListener(v -> {

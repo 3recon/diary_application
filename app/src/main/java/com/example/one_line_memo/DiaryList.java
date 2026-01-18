@@ -9,25 +9,25 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class DiaryList extends AppCompatActivity {
-    ImageButton btnMenu2;
+    ImageButton btnMenu;
     DrawerLayout drawerLayout2;
     ImageButton imgbtnclose;
     DrawerLayout drawerLayout;
 
     //사이드바 부분
-    TextView tvSetting;
     TextView tvDiaryList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diary_list);
 
-        btnMenu2=(ImageButton) findViewById(R.id.btnMenu2);
-        drawerLayout=(DrawerLayout)findViewById(R.id.sidemenu);
+        btnMenu=(ImageButton) findViewById(R.id.btnMenu2);
+        drawerLayout=(DrawerLayout)findViewById(R.id.sidemenu2);
         imgbtnclose=(ImageButton) findViewById(R.id.imgbtnclose);
+        tvDiaryList = findViewById(R.id.tvDiaryList);
 
 
-        btnMenu2.setOnClickListener(v -> {
+        btnMenu.setOnClickListener(v -> {
             drawerLayout.openDrawer(GravityCompat.END);
         });
         imgbtnclose.setOnClickListener(view -> {
