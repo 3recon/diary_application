@@ -86,9 +86,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayVie
         // 요일 색상 변경
         int dayOfWeek = (position % 7); // 0:일요일, 6:토요일 기준 (GridLayoutManager 7열)
         if (dayOfWeek == 0) {
-            holder.tvDay.setTextColor(Color.RED);       // 일요일 빨강
+            holder.tvDay.setTextColor(Color.parseColor("#E57373"));       // 일요일 빨강
         } else if (dayOfWeek == 6) {
-            holder.tvDay.setTextColor(Color.BLUE);      // 토요일 파랑
+            holder.tvDay.setTextColor(Color.parseColor("#177ed1"));      // 토요일 파랑
         } else {
             holder.tvDay.setTextColor(Color.BLACK);     // 평일 검정
         }
