@@ -57,11 +57,27 @@ public class MainActivity extends AppCompatActivity {
         imgbtnclose.setOnClickListener(view -> {
             drawerLayout.closeDrawer(GravityCompat.END);
         });
+        // 오늘 날짜 key
+        String today = LocalDate.now().toString();
 
+        // SharedPreferences 가져오기
+        SharedPreferences sp = getSharedPreferences("diary", MODE_PRIVATE);
+
+        // 오늘 일기 이미 있으면 버튼 비활성화
+        if (sp.contains(today)) {
+            btnSaveMemo.setEnabled(false);
+            btnSaveMemo.setText("오늘 일기 작성 완료");
+        }
 
         btnSaveMemo.setOnClickListener(v->{
             int memoLength=edtMemo.getText().toString().length();
             String memo=edtMemo.getText().toString().trim();
+
+            // ✅ 오늘 일기가 이미 있으면 저장 금지
+            if (sp.contains(today)) {
+                Toast.makeText(MainActivity.this, "오늘 일기는 이미 작성되었습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             if (memoLength>40) {
                 Toast.makeText(MainActivity.this,"40자 미만으로 작성해주세요",Toast.LENGTH_SHORT).show();
@@ -71,15 +87,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"일기를 작성해주세요",Toast.LENGTH_SHORT).show();
                 return;
             }
-            else {
-                String today=LocalDate.now().toString();
-                SharedPreferences sp=getSharedPreferences("diary",MODE_PRIVATE);
-                sp.edit().putString(today,memo).apply();
-                edtMemo.setText("");
-                startActivity(new Intent(this, DiaryList.class));
-//                Intent intent = new Intent(MainActivity.this, DiaryList.class);
-//                startActivity(intent);
-            }
+            // 저장
+            sp.edit().putString(today,memo).apply();
+            edtMemo.setText("");
+            startActivity(new Intent(this, DiaryList.class));
         });
 
         //사이드바 부분

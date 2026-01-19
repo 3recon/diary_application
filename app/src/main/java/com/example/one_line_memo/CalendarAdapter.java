@@ -1,5 +1,6 @@
 package com.example.one_line_memo;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,16 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayVie
         }
 
         holder.tvDay.setText(String.valueOf(day));
+
+        // 요일 색상 변경
+        int dayOfWeek = (position % 7); // 0:일요일, 6:토요일 기준 (GridLayoutManager 7열)
+        if (dayOfWeek == 0) {
+            holder.tvDay.setTextColor(Color.RED);       // 일요일 빨강
+        } else if (dayOfWeek == 6) {
+            holder.tvDay.setTextColor(Color.BLUE);      // 토요일 파랑
+        } else {
+            holder.tvDay.setTextColor(Color.BLACK);     // 평일 검정
+        }
 
         String dateKey = year + "-" +
                 String.format("%02d", month) + "-" +

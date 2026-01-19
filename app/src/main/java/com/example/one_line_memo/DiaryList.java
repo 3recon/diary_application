@@ -32,6 +32,7 @@ public class DiaryList extends AppCompatActivity {
     TextView tvSelectedDate;
     TextView tvDiaryContent;
     Set<String> diaryDates = new HashSet<>();
+    ImageButton btnPrevMonth, btnNextMonth;
 
 
 
@@ -48,8 +49,8 @@ public class DiaryList extends AppCompatActivity {
         tvDiaryList = findViewById(R.id.tvDiaryList);
         tvSelectedDate = findViewById(R.id.tvSelectedDate);
         tvDiaryContent = findViewById(R.id.tvDiaryContent);
-
-
+        ImageButton btnPrevMonth = findViewById(R.id.btnPrevMonth);
+        ImageButton btnNextMonth = findViewById(R.id.btnNextMonth);
 
         btnMenu.setOnClickListener(v -> {
             drawerLayout.openDrawer(GravityCompat.END);
@@ -73,14 +74,13 @@ public class DiaryList extends AppCompatActivity {
 
         // 현재 달 설정
         LocalDate now = LocalDate.now();
-        currentYear = now.getYear();      // 🔥 이 줄
-        currentMonth = now.getMonthValue(); // 🔥 이 줄
+        currentYear = now.getYear();
+        currentMonth = now.getMonthValue();
 
         calendarAdapter.setMonth(currentYear, currentMonth);
         tvYearMonth.setText(currentYear + "년 " + currentMonth + "월");
-
-
-
+        //달력 초기화
+        updateCalendar();
 
         SharedPreferences sp = getSharedPreferences("diary", MODE_PRIVATE);
 
@@ -101,10 +101,47 @@ public class DiaryList extends AppCompatActivity {
             tvDiaryContent.setText(memo);
         });
 
+        //월 넘기기 버튼
+        btnPrevMonth.setOnClickListener(v -> {
+            currentMonth--;
+            if (currentMonth < 1) {
+                currentMonth = 12;
+                currentYear--;
+            }
+            updateCalendar();
+        });
 
-
+        btnNextMonth.setOnClickListener(v -> {
+            currentMonth++;
+            if (currentMonth > 12) {
+                currentMonth = 1;
+                currentYear++;
+            }
+            updateCalendar();
+        });
 
     }
+    private void updateCalendar() {
+        // 상단 "2026년 1월"
+        tvYearMonth.setText(currentYear + "년 " + currentMonth + "월");
+
+        // 달력 갱신
+        calendarAdapter.setMonth(currentYear, currentMonth);
+
+        // 🔴 마커 갱신
+        SharedPreferences sp = getSharedPreferences("diary", MODE_PRIVATE);
+        Map<String, ?> allEntries = sp.getAll();
+
+        Set<String> diaryDates = new HashSet<>();
+        for (String key : allEntries.keySet()) {
+            if (key.startsWith(currentYear + "-" + String.format("%02d", currentMonth))) {
+                diaryDates.add(key);
+            }
+        }
+
+        calendarAdapter.setDiaryDates(diaryDates);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();   // 기본 동작: 이전 Activity로 돌아감
