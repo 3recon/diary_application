@@ -1,8 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.One_Line_Memo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#FFFFFF</item> <!-- 원하는 색상 -->
+        <item name="colorPrimaryVariant">#F0F0F0</item>
+        <item name="colorOnPrimary">#000000</item> <!-- 글자 색 -->
+        <item name="android:statusBarColor">@color/status_bar_color</item>
+
+
     </style>
 
     <style name="Theme.One_Line_Memo" parent="Base.Theme.One_Line_Memo" />

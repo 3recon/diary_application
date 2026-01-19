@@ -42,8 +42,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#D9d9d9"
+                android:background="@drawable/bk_and_wh"
                 android:hint="하루를 입력하세요"
+                android:padding="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/edtMemo"
@@ -64,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnSaveMemo"
                 android:text="저장"
+                android:background="@drawable/bk_and_wh"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:layout_gravity="end"/>
@@ -75,7 +77,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvwise"
             android:text="명언이 들어갈 자리"
-            android:background="#D9d9d9"
+            android:background="@drawable/bk_and_wh"
+            android:padding="10dp"
             android:layout_marginTop="300dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"

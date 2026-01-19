@@ -89,17 +89,21 @@ public class MainActivity extends AppCompatActivity {
 //            }
 
             if (memoLength>40) {
-                new AlertDialog.Builder(this)
+                AlertDialog dialog= new AlertDialog.Builder(this)
                     .setMessage("40자 이하로 일기를 작성해주세요.")
                     .setPositiveButton("확인", null)
                     .show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setTextColor(Color.BLACK); // 혹은 원하는 색
                 return;
             }
             if (memoLength==0) {
-                new AlertDialog.Builder(this)
+                AlertDialog dialog= new AlertDialog.Builder(this)
                     .setMessage("일기를 작성하지 않았습니다.")
                     .setPositiveButton("확인", null)
                     .show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(Color.BLACK); // 혹은 원하는 색
                 return;
             }
             // 저장
