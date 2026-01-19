@@ -3,9 +3,12 @@ package com.example.one_line_memo;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -34,10 +37,15 @@ public class DiaryList extends AppCompatActivity {
     Set<String> diaryDates = new HashSet<>();
     ImageButton btnPrevMonth, btnNextMonth;
 
+    Button btnDelete;
 
 
     //사이드바 부분
     TextView tvDiaryList;
+
+    //Todo
+    //삭제 버튼 연결
+    //삭제 버튼 터치 시 팝업으로 존나 귀한 기록인데 삭제할거임? 이라고 물어보기
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +59,7 @@ public class DiaryList extends AppCompatActivity {
         tvDiaryContent = findViewById(R.id.tvDiaryContent);
         ImageButton btnPrevMonth = findViewById(R.id.btnPrevMonth);
         ImageButton btnNextMonth = findViewById(R.id.btnNextMonth);
+        btnDelete=(Button) findViewById(R.id.btnDelete);
 
         btnMenu.setOnClickListener(v -> {
             drawerLayout.openDrawer(GravityCompat.END);
@@ -118,6 +127,32 @@ public class DiaryList extends AppCompatActivity {
                 currentYear++;
             }
             updateCalendar();
+        });
+
+        //삭제 버튼 btnDelete
+        btnDelete.setOnClickListener(v->{
+            new AlertDialog.Builder(this)
+                    .setMessage("부끄럽거나 지우고 싶더라도 \n소중한 당신의 기억이에요\n정말 삭제하시겠어요?\uD83D\uDE22")
+                    .setPositiveButton("취소", null)
+                    .setNegativeButton("삭제", (dialog, which) -> {
+                        // 선택된 날짜 가져오기
+                        String dateKey = tvSelectedDate.getText().toString();
+
+                        // 이미 있는 sp 변수 사용
+                        sp.edit().remove(dateKey).apply();
+
+                        // 화면 갱신: 일기 내용 초기화
+                        tvDiaryContent.setText("작성된 일기가 없습니다");
+
+                        // 달력 마커 갱신
+                        diaryDates.remove(dateKey);
+                        calendarAdapter.setDiaryDates(diaryDates);
+
+                        new AlertDialog.Builder(this)
+                                .setMessage("일기가 삭제되었습니다..")
+                                .show();
+                    })
+                    .show();
         });
 
     }
