@@ -1,12 +1,16 @@
 package com.example.one_line_memo;
 
+import java.time.LocalDate;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,6 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import android.content.SharedPreferences;
+import java.time.LocalDate;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvwise;
     //사이드바 부분
     TextView tvDiaryList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnSaveMemo.setOnClickListener(v->{
             int memoLength=edtMemo.getText().toString().length();
+            String memo=edtMemo.getText().toString().trim();
 
             if (memoLength>40) {
                 Toast.makeText(MainActivity.this,"40자 미만으로 작성해주세요",Toast.LENGTH_SHORT).show();
@@ -63,10 +72,13 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             else {
+                String today=LocalDate.now().toString();
+                SharedPreferences sp=getSharedPreferences("diary",MODE_PRIVATE);
+                sp.edit().putString(today,memo).apply();
                 edtMemo.setText("");
-                Intent intent = new Intent(MainActivity.this, DiaryList.class);
-                startActivity(intent);
-//                finish();
+                startActivity(new Intent(this, DiaryList.class));
+//                Intent intent = new Intent(MainActivity.this, DiaryList.class);
+//                startActivity(intent);
             }
         });
 
@@ -77,11 +89,20 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.END);
             startActivity(new Intent(MainActivity.this, DiaryList.class));
         });
-
-
+        //캘린더 부분
+//        rvCalendar = findViewById(R.id.rvCalendar);
+//
+//        rvCalendar.setLayoutManager(new GridLayoutManager(this, 7));
+//
+//        calendarAdapter = new CalendarAdapter();
+//        rvCalendar.setAdapter(calendarAdapter);
+//
+//        // 예: 현재 달 표시
+//        LocalDate now = LocalDate.now();
+//        calendarAdapter.setMonth(now.getYear(), now.getMonthValue());
     }
     //Todo
-    //1.사이드바 메뉴 누르면 해당 화면으로 이동
+    //1.사이드바 메뉴 누르면 해당 화면으로 이동 ok
     //2.일기 로컬에 저장 회원가입 없이
 
     @Override

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tvDay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="16sp"/>
+    <!-- 🔴 일기 존재 점 -->
+    <View
+        android:id="@+id/dot"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/dot_red"
+        android:visibility="gone"/>
+
+</FrameLayout>
