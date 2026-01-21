@@ -57,18 +57,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 / 40"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="4dp"
                 android:textSize="14sp"/>
-            <Button
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/btnSaveMemo"-->
+<!--                android:text="저장"-->
+<!--                android:background="@drawable/bk_and_wh"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_gravity="end"/>-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveMemo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnSaveMemo"
                 android:text="저장"
-                android:background="@drawable/bk_and_wh"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
+                android:background="@drawable/button_background"
+                app:backgroundTint="@null"
+                android:layout_marginEnd="20dp"
                 android:layout_gravity="end"/>
+
         </LinearLayout>
 
         <!--명언 부분 텍스트뷰-->
