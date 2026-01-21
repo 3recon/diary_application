@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -109,7 +110,15 @@ public class DiaryList extends AppCompatActivity {
 
             String memo = sp.getString(date, "작성된 일기가 없습니다.");
             tvDiaryContent.setText(memo);
+
+            // ✅ 삭제 버튼 표시 / 숨김
+            if (sp.contains(date)) {
+                btnDelete.setVisibility(View.VISIBLE);
+            } else {
+                btnDelete.setVisibility(View.GONE);
+            }
         });
+
 
         //월 넘기기 버튼
         btnPrevMonth.setOnClickListener(v -> {
@@ -159,6 +168,19 @@ public class DiaryList extends AppCompatActivity {
             outerdialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK); // 취소 버튼
             outerdialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);   // 삭제 버튼
         });
+        // ✅ 처음 선택 날짜를 오늘로 설정
+        int todayDay = now.getDayOfMonth();
+
+        String todayDate = currentYear + "-" +
+                String.format("%02d", currentMonth) + "-" +
+                String.format("%02d", todayDay);
+
+        // 상단 날짜 표시
+        tvSelectedDate.setText(todayDate);
+
+        // 일기 내용 표시
+        String memo = sp.getString(todayDate, "작성된 일기가 없습니다.");
+        tvDiaryContent.setText(memo);
 
     }
     private void updateCalendar() {
