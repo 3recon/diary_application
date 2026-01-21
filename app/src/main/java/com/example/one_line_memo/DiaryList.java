@@ -182,6 +182,13 @@ public class DiaryList extends AppCompatActivity {
         String memo = sp.getString(todayDate, "작성된 일기가 없습니다.");
         tvDiaryContent.setText(memo);
 
+        // 🔥 삭제 버튼 상태 갱신 (중요!!)
+        if (sp.contains(todayDate)) {
+            btnDelete.setVisibility(View.VISIBLE);
+        } else {
+            btnDelete.setVisibility(View.GONE);
+        }
+
     }
     private void updateCalendar() {
         // 상단 "2026년 1월"
