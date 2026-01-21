@@ -5,6 +5,7 @@ import java.util.Random;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -55,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
         edtMemo=findViewById(R.id.edtMemo);
         tvwise=(TextView)findViewById(R.id.tvwise);
         TextView tvCharCount = findViewById(R.id.tvCharCount);
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO
+        );
+
 
 
         btnMenu.setOnClickListener(v -> {
