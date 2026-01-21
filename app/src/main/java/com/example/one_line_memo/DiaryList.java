@@ -141,7 +141,7 @@ public class DiaryList extends AppCompatActivity {
 
         //삭제 버튼 btnDelete
         btnDelete.setOnClickListener(v->{
-            AlertDialog outerdialog=new AlertDialog.Builder(this)
+            AlertDialog outerdialog=new AlertDialog.Builder(this,R.style.RoundedDialog)
                     .setMessage("부끄럽거나 지우고 싶더라도 \n소중한 당신의 기억이에요\n정말 삭제하시겠어요?\uD83D\uDE22")
                     .setPositiveButton("취소", null)
                     .setNegativeButton("삭제", (dialog, which) -> {
@@ -158,7 +158,7 @@ public class DiaryList extends AppCompatActivity {
                         diaryDates.remove(dateKey);
                         calendarAdapter.setDiaryDates(diaryDates);
 
-                        new AlertDialog.Builder(this)
+                        new AlertDialog.Builder(this,R.style.RoundedDialog)
                                 .setMessage("일기가 삭제되었습니다..")
                                 .show();
                         // 버튼 색 변경

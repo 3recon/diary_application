@@ -70,26 +70,13 @@ public class MainActivity extends AppCompatActivity {
         // SharedPreferences 가져오기
         SharedPreferences sp = getSharedPreferences("diary", MODE_PRIVATE);
 
-        // 오늘 일기 이미 있으면 버튼 비활성화
-        //-----------테스트용으로 임시 비활성화--------------------------------------------
-//        if (sp.contains(today)) {
-//            btnSaveMemo.setEnabled(false);
-//            btnSaveMemo.setText("일기 작성 완료");
-//        }
-
         btnSaveMemo.setOnClickListener(v->{
             int memoLength=edtMemo.getText().toString().length();
             String memo=edtMemo.getText().toString().trim();
 
-            // ✅ 오늘 일기가 이미 있으면 저장 금지
-            //-----------테스트용으로 임시 비활성화--------------------------------------------
-//            if (sp.contains(today)) {
-//                Toast.makeText(MainActivity.this, "오늘 일기는 이미 작성되었습니다.", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
 
             if (memoLength>40) {
-                AlertDialog dialog= new AlertDialog.Builder(this)
+                AlertDialog dialog= new AlertDialog.Builder(this,R.style.RoundedDialog)
                     .setMessage("40자 이하로 일기를 작성해주세요.")
                     .setPositiveButton("확인", null)
                     .show();
@@ -98,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             if (memoLength==0) {
-                AlertDialog dialog= new AlertDialog.Builder(this)
+                AlertDialog dialog= new AlertDialog.Builder(this,R.style.RoundedDialog)
                     .setMessage("일기를 작성하지 않았습니다.")
                     .setPositiveButton("확인", null)
                     .show();
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(Color.BLACK); // 혹은 원하는 색
+                        .setTextColor(Color.BLACK);
                 return;
             }
             // 저장
@@ -142,12 +129,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    //Todo
-    //1.사이드바 메뉴 누르면 해당 화면으로 이동 ok
-    //2.일기 로컬에 저장 회원가입 없이
+
 
     @Override
-    //메인화면이 출력될 때 마다 명언 랜덤 새로고침
+    //메인 화면이 출력될 때 마다 문구 새로고침, 저장/작성 완료 버튼 로직 재검사
     protected void onResume() {
         super.onResume();
         //랜덤 적용 부분
@@ -155,5 +140,18 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         int index = random.nextInt(wiseArray.length);
         tvwise.setText(wiseArray[index]);
+
+        // 🔥 오늘 일기 존재 여부 다시 체크
+        String today = LocalDate.now().toString();
+        SharedPreferences sp = getSharedPreferences("diary", MODE_PRIVATE);
+
+        if (sp.contains(today)) {
+            btnSaveMemo.setEnabled(false);
+            btnSaveMemo.setText("기록 완료🙂");
+        } else {
+            btnSaveMemo.setEnabled(true);
+            btnSaveMemo.setText("저장");
+        }
+
     }
 }
