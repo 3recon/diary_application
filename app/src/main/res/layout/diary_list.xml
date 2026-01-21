@@ -91,7 +91,7 @@
                 android:layout_marginRight="15dp"
                 android:text="작성된 일기가 없습니다"
                 android:textSize="20sp"
-                android:background="@drawable/bk_and_wh"
+                android:background="#FFFFFF"
                 app:layout_constraintTop_toBottomOf="@id/tvSelectedDate"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
