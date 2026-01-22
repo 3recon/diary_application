@@ -1,4 +1,4 @@
-package com.example.one_line_memo;
+package com.changhyeon.one_line_memo;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -139,7 +139,7 @@ public class DiaryList extends AppCompatActivity {
         //삭제 버튼 btnDelete
         btnDelete.setOnClickListener(v->{
             AlertDialog outerdialog=new AlertDialog.Builder(this,R.style.RoundedDialog)
-                    .setMessage("부끄럽거나 지우고 싶더라도 \n소중한 당신의 기억이에요\n정말 삭제하시겠어요?\uD83D\uDE22")
+                    .setMessage("부끄럽거나 지우고 싶더라도 소중한 기억이에요\n정말 삭제하시겠어요?\uD83D\uDE22")
                     .setPositiveButton("취소", null)
                     .setNegativeButton("삭제", (dialog, which) -> {
                         // 선택된 날짜 가져오기
@@ -154,11 +154,14 @@ public class DiaryList extends AppCompatActivity {
                         // 달력 마커 갱신
                         diaryDates.remove(dateKey);
                         calendarAdapter.setDiaryDates(diaryDates);
+                        btnDelete.setVisibility(View.GONE); // 일기 삭제 시 버튼 숨김
+
 
                         new AlertDialog.Builder(this,R.style.RoundedDialog)
                                 .setMessage("일기가 삭제되었습니다..")
                                 .show();
                         // 버튼 색 변경
+
 
                     })
                     .show();

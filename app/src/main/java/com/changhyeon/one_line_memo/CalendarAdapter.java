@@ -1,4 +1,4 @@
-package com.example.one_line_memo;
+package com.changhyeon.one_line_memo;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

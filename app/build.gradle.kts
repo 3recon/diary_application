@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.one_line_memo"
+    namespace = "com.changhyeon.one_line_memo"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.one_line_memo"
+        applicationId = "com.changhyeon.one_line_memo"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
