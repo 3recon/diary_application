@@ -28,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+
 import android.content.SharedPreferences;
 import java.time.LocalDate;
 
@@ -37,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageButton btnMenu, imgbtnclose;
     EditText edtMemo;
-    Button btnSaveMemo;
+//    Button btnSaveMemo;
+    ImageButton btnSaveMemo;
     TextView tvwise;
     //사이드바 부분
     TextView tvDiaryList;
@@ -151,11 +154,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("diary", MODE_PRIVATE);
 
         if (sp.contains(today)) {
+            btnSaveMemo.setImageResource(R.drawable.edit_off);
             btnSaveMemo.setEnabled(false);
-            btnSaveMemo.setText("기록 완료 🙂");
+//            btnSaveMemo.setText("기록 완료 🙂");
         } else {
             btnSaveMemo.setEnabled(true);
-            btnSaveMemo.setText("저장");
+            btnSaveMemo.setImageResource(R.drawable.edit_note);
         }
 
     }

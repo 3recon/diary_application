@@ -39,15 +39,12 @@ public class DiaryList extends AppCompatActivity {
     Set<String> diaryDates = new HashSet<>();
     ImageButton btnPrevMonth, btnNextMonth;
 
-    Button btnDelete;
-
+//    Button btnDelete;
+    ImageButton btnDelete;
 
     //사이드바 부분
     TextView tvDiaryList;
 
-    //Todo
-    //삭제 버튼 연결
-    //삭제 버튼 터치 시 팝업으로 존나 귀한 기록인데 삭제할거임? 이라고 물어보기
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +58,7 @@ public class DiaryList extends AppCompatActivity {
         tvDiaryContent = findViewById(R.id.tvDiaryContent);
         ImageButton btnPrevMonth = findViewById(R.id.btnPrevMonth);
         ImageButton btnNextMonth = findViewById(R.id.btnNextMonth);
-        btnDelete=(Button) findViewById(R.id.btnDelete);
+        btnDelete=findViewById(R.id.btnDelete);
 
         btnMenu.setOnClickListener(v -> {
             drawerLayout.openDrawer(GravityCompat.END);

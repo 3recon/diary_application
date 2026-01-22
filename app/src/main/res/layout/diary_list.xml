@@ -96,14 +96,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
             <!--삭제 버튼-->
-            <com.google.android.material.button.MaterialButton
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btnDelete"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="삭제"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/button_background"-->
+<!--                app:backgroundTint="@null"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tvDiaryContent"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/tvDiaryContent"/>-->
+            <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="삭제"
+                android:src="@drawable/delete"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="삭제"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/button_background"
-                app:backgroundTint="@null"
                 app:layout_constraintTop_toBottomOf="@id/tvDiaryContent"
                 app:layout_constraintEnd_toEndOf="@id/tvDiaryContent"/>
 
