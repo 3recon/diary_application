@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (sp.contains(today)) {
             btnSaveMemo.setEnabled(false);
-            btnSaveMemo.setText("기록 완료🙂");
+            btnSaveMemo.setText("기록 완료 🙂");
         } else {
             btnSaveMemo.setEnabled(true);
             btnSaveMemo.setText("저장");
